@@ -1,0 +1,9 @@
+
+  <h1> Fast Math Sign Up Page</h1>
+  <%= @error %>
+  <form method="POST" action="/users/signup">
+    Username: <input type="text" name="user[username]" > <br>
+    Email: <input type="email" name="user[email]" > <br>
+    Password: <input type="password" name="user[password]"> <br>
+    <input type="submit" value="Sign Up">
+  </form>

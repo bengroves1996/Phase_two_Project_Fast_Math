@@ -1,0 +1,8 @@
+<h1>The comment you are editing is: <%= "'#{@comment.name}'" %></h1>
+
+<form method="POST" action="/comments/<%= @comment.id %>">
+    <input type="hidden" name="_method" value="PATCH">
+        <input type="text" name="comment[name]" value=<%= @comment.name %> />
+    </label>
+    <input type="submit" value="Edit Comment">
+</form>

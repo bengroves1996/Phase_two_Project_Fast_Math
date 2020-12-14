@@ -1,0 +1,65 @@
+<h1>Welcome to Division Problem Time Trial </h1>
+<html lang = "en">
+    <body>
+        <div>Seconds: <span id="time">0</span></div>
+        <input type="button" id="startTimer" value="Start Timer" onclick="start();"><br/>
+       
+        <input type="button" id="resetTimer" value="Reset Timer"  onclick="reset();"><br/>
+        <script>
+            var timeElapsed = 0;
+            var timerID = -1;
+            function tick() {
+                timeElapsed++
+                document.getElementById("time").innerHTML = timeElapsed;
+            }
+            function start() {
+                if(timerID == -1){
+                    timerID = setInterval(tick, 1000);
+                }
+            }
+            function stop() {
+                if(timerID != -1){
+                    clearInterval(timerID)
+                    timerID = -1
+                }
+            }
+            function reset() {
+                stop();
+                timeElapsed = -1;
+                tick()
+            }
+        </script>
+    </body>
+<form method="POST" action="/hub">
+
+ <p>1 &divide; 1 = <input type="number" name="p1"></p>
+ <p>2 &divide; 1 = <input type="number" name="p2"></p>
+ <p>3 &divide; 3 = <input type="number" name="p3"></p>
+ <p>2 &divide; 2 = <input type="number" name="p4"></p>
+ <p>0 &divide; 1 = <input type="number" name="p5"></p>
+ <p>18 &divide; 3 = <input type="number" name="p6"></p>
+ <p>4 &divide; 2 = <input type="number" name="p7"></p>
+ <p>18 &divide; 9 = <input type="number" name="p8"></p>
+ <p>20 &divide; 5 = <input type="number" name="p9"></p>
+ <p>6 &divide; 3 = <input type="number" name="p10"></p>
+ <p>6 &divide; 2 = <input type="number" name="p11"></p>
+ <p>3 &divide; 1 = <input type="number" name="p12"></p>
+ <p>10 &divide; 2 = <input type="number" name="p13"></p>
+ <p>5 &divide; 1 = <input type="number" name="p14"></p>
+ <p>10 &divide; 5 = <input type="number" name="p15"></p>
+ <p>0 &divide; 3 = <input type="number" name="p16"></p>
+ <p>12 &divide; 3 = <input type="number" name="p17"></p>
+ <p>12 &divide; 4 = <input type="number" name="p18"></p>
+ <p>35 &divide; 7 = <input type="number" name="p19"></p>
+ <p>0 &divide; 1000 = <input type="number" name="p20"></p>
+ <p>90 &divide; 3  = <input type="number" name="p21"></p>
+ <p>27 &divide; 3  = <input type="number" name="p22"></p>
+ <p>100 &divide; 10 = <input type="number" name="p23"></p>
+ <p>50 &divide; 10  = <input type="number" name="p24"></p>
+ <p>150 &divide; 5  = <input type="number" name="p25"></p>
+
+ <input type="button" id="stopTimer" value="Stop Timer"  onclick="stop();"><br/>
+
+
+ <h2>Back the Hub</h2>
+ <a href="http://127.0.0.1:9394/hub">Fast Math Hub</a> <br>

@@ -1,0 +1,125 @@
+ # post '/signup' do
+    #     #create a new user AND log them in
+
+    #     #create user
+    #     if params[:user].values.any?{|value| value == ""}
+
+    #         redirect to '/signup'
+    #     else
+
+    #         user = User.create(params[:user])
+    #         #log user in
+    #         session[:user_id] = user.id
+    #         redirect to '/genres'
+    #     end
+
+    # end
+
+    ################################################
+    Session controller.rb Idea
+    class SessionController < ApplicationController
+
+    get '/login' do
+        erb :'sessions/new'
+    end
+
+    post '/login' do
+        #find user by username
+        user = User.find_by_username(params[:user][:username])
+        #check to see if user is found and has proper password
+        if user && user.authenticate(params[:user][:password])
+            #log them in by setting session
+            session[:user_id] = user.id
+            redirect to '/problems'
+        else
+            redirect to '/login'
+        end
+    end
+
+
+    delete '/logout' do
+        session.clear
+        redirect to '/login'
+    end
+
+
+    
+end
+#############################################
+User_controller.rb Idea
+
+class UserController < ApplicationController
+
+    get '/signup' do
+        erb :'users/new'
+    end
+
+    post '/signup' do
+        user = User.new(params[:user])
+
+        if user.save
+            session[:user_id] = user.id
+
+
+            redirect to '/genres'
+        else
+            @error = user.errors.full_messages.join(" - ")
+            erb :'users/new'
+        end
+
+    end
+
+   
+end
+
+#####################################################
+Table format 
+
+<!DOCTYPE html>
+<html>
+<h1>Welcome to Addition Problem Time Trial </h1>
+<form method="POST" action="/hub">
+
+ <p>1+0: <input type="number" name="p1"></p>
+ <p>Problem 2: <input type="number" name="p2"></p>
+ <p>Problem 3: <input type="number" name="p3"></p>
+ <p>Problem 4: <input type="number" name="p4"></p>
+ <p>Problem 5: <input type="number" name="p5"></p>
+ <p>Problem 6: <input type="number" name="p6"></p>
+ <p>Problem 7: <input type="number" name="p7"></p>
+ <p>Problem 8: <input type="number" name="p8"></p>
+ <p>Problem 9: <input type="number" name="p9"></p>
+ <p>Problem 10: <input type="number" name="p10"></p>
+
+ <input type="submit" id="Submit" value="Submit">
+
+ </form> 
+
+ ###############################################
+
+ Comments format 
+ 
+   #* Get new comment form
+    get '/comments/new_comment' do
+        if logged_in?
+            erb :'comments/new_comment'
+        else
+            @error = "Please login before posting a comment!"
+            erb :'sessions/login'
+        end
+    end
+
+    post '/comments' do
+        Comments.create(params)
+        redirect to '/comments'
+    end
+
+    get '/comments/:id' do
+        @comment = Comment.find_by(id: params[:id])
+
+        if @comment == nil
+            redirect to '/comments'
+        end
+
+        erb :'comments/display'
+    end

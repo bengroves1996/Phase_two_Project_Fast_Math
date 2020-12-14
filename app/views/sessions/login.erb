@@ -1,0 +1,14 @@
+    <h1>Hello, and Welcome to Fast Math!</h1>
+    <%= @error %>
+    <h2>If you have a login enter it below, else lets sign you up &#9786; </h2>
+
+    <form method="POST" action="/login">
+      Username: <input type="text" name="user[username]" > <br>
+      Password: <input type="password" name="user[password]"> <br>
+      <input type="submit" value="Login">
+    </form>
+  
+  <a href="http://127.0.0.1:9394/users/signup">Fast Math Signup</a>
+    
+  </body>
+</html>
