@@ -3,20 +3,17 @@
 <h3>Comments made by users</h3>
 <ul>
 <% @comments.each do |comment| %>
-    <li>  <%comment.id %> <%= current_user.username %>   <%=  comment.name%>   </li>
+    
+    <li><a href="/comments/<%= comment.id %>"><%= comment.name %></a></li>
 <% end %>
 </ul>
 
 <h3>Post a new comment here</h3>
 <a href=http://127.0.0.1:9394/comments/new_comment>New Comment Form</a> <br>
 
-<h3>Edit a comment here</h3>
-<form method="POST" action="/comments/edit" >
-    <input type="submit" value="Edit Comment">
-</form>
-
-<h3>You can delete any comments you have made here</h3>
-<form method="POST" action="/comment
+<form method="POST" action="/comments/comment.id%" >
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Comment">
 </form>
+
+<a href="http://127.0.0.1:9394/hub">Fast Math Hub</a> <br>

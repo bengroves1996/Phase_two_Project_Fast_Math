@@ -7,7 +7,7 @@ class CommentController < ApplicationController
         erb :'comments/index'
     end
 
-       #* Get new comment form
+    #* Get new comment form
     get '/comments/new_comment' do
         if logged_in?
             erb :'comments/new_comment'
@@ -23,8 +23,15 @@ class CommentController < ApplicationController
         redirect to '/comments'
     end
 
-
-
+    #* Get comment show page
+    get '/comments/:id' do
+        @comment = Comment.find_by(id: params[:id])
+        if @comment == nil
+             redirect to '/comments'
+            end
+            erb :'comments/show'    
+    end
+    
     #* Get edit comment form
     get '/comments/:id/edit' do
         @comment = Comment.find(params[:id])
@@ -38,8 +45,8 @@ class CommentController < ApplicationController
         redirect to "/comments"
     end
 
-    #* delete comment
-    delete '/comments/<%= @comment.id %>' do
+    #* Delete comment
+    delete '/comments/:id' do
         comment = Comment.find(params[:id])
         comment.destroy
         redirect to '/comments'

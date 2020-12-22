@@ -123,3 +123,18 @@ Table format
 
         erb :'comments/display'
     end
+
+    #########################
+    Formatting for delete and edit buttons place in index file maybe
+    <h3>Edit a comment here</h3>
+
+<form method="POST" action="/comments/edit" >
+    <input type="submit" value="Edit Comment">
+</form>
+
+
+<h3>You can delete any comments you have made here</h3>
+<form method="POST" action="/comment
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Comment">
+</form>
