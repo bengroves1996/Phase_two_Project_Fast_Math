@@ -13,4 +13,6 @@ use TablesController
 
 use CommentController
 
+use ThreadController
+
 run ApplicationController
