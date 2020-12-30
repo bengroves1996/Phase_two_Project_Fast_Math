@@ -6,20 +6,16 @@ class ThreadController < ApplicationController
          erb :'comments/index'
      end
  
-     #* Get new comment form
-     get '/comments/new_comment' do
-         if logged_in?
-             erb :'comments/new_comment'
-         else
+     #* Get new thread form
+     get '/comments/new_thread' do
+             erb :'comments/new_thread'
              @error = "Please login before posting a comment!"
-             erb :'sessions/login'
-         end
      end
  
-     #* Create new comment from form
-     post '/comments' do
+     #* Create new thread from form
+     post '/comments/:id' do
          Comment.create(params)
-         redirect to '/comments'
+         redirect to '/comments/:id'
      end
    
  

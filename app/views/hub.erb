@@ -16,6 +16,8 @@
 <a href="http://127.0.0.1:9394/comments">User Comment Forum</a> <br>
 
 
+<h1><%= params[:user].class%></h1>
+
 <h5>Logout here when you're ready</h5>
 <form method="POST" action="/logout">
 <input type="hidden" name="_method" value="DELETE">

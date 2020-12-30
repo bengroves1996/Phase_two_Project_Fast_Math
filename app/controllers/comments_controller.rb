@@ -24,7 +24,9 @@ class CommentController < ApplicationController
     #* Create new comment from form
     post '/comments' do
         if logged_in?
-            Comment.create(params)
+            comment = Comment.create(name: params[:name])
+            user = current_user 
+            user.comments << "Added to user"
             redirect to '/comments'
         else
             erb :'sessions/login'
@@ -35,9 +37,9 @@ class CommentController < ApplicationController
     get '/comments/:id' do
         if logged_in?
             @comment = Comment.find_by(id: params[:id])
-                if @comment == nil
-                    redirect to '/comments'
-                end
+            if @comment == nil
+                redirect to '/comments'
+            end
             erb :'comments/show'   
         else
             erb :'sessions/login'

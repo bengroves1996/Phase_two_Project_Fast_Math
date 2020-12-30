@@ -2,21 +2,15 @@
 
 <h2><%= @comment.name %></h2>
 
-    <ol>
-        <% @comment.threads.each do |thread|%>
-                <li><%= thread.word %></li>
-        <%end%>
-    </ol>
+<ol>
+<% @comment.threads.each do |thing|%>
+        <li><%= thing.word %></li>
+<%end%>
+</ol>
 
-<form method="GET" action="/comments" >
-    <input type="submit" value="View all Comments">
-</form>
-
-<form method="GET" action="/comments/<%=@comment.id%>/edit" >
-    <input type="submit" value="Edit Comment">
-</form>
-
-<form method="POST" action="/comments/<%=@comment.id%>" >
+<form method="POST" action="/comments/comment.id%" >
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Comment">
 </form>
+
+

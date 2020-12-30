@@ -1,4 +1,4 @@
 class Comment  < ActiveRecord::Base
-    has_many :threads
     belongs_to :user
+    has_many :threads
 end
