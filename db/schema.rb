@@ -14,10 +14,12 @@ ActiveRecord::Schema.define(version: 2020_12_19_192916) do
 
   create_table "comments", force: :cascade do |t|
     t.string "name"
+    t.integer "user_id"
   end
 
-  create_table "threads", force: :cascade do |t|
+  create_table "pages", force: :cascade do |t|
     t.string "word"
+    t.integer "comment_id"
   end
 
   create_table "users", force: :cascade do |t|

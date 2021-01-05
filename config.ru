@@ -11,8 +11,8 @@ use HubController
 
 use TablesController
 
-use CommentController
+use CommentsController
 
-use ThreadController
+use PagesController
 
 run ApplicationController

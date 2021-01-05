@@ -1,16 +1,26 @@
-<h1>Comment Thread Page</h1>
+<h1>Comment Page</h1>
 
 <h2><%= @comment.name %></h2>
 
 <ol>
-<% @comment.threads.each do |thing|%>
+<% @comment.pages.each do |thing|%>
         <li><%= thing.word %></li>
 <%end%>
 </ol>
 
-<form method="POST" action="/comments/comment.id%" >
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Comment">
-</form>
+<ol>
+    <%if current_user.id == @comment.user.id %>
+    <form method="POST" action="/comments/<%=@comment.id%>" >
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Comment">
+    </form>
+
+    <form method="GET" action="/comments/<%=@comment.id%>/edit" >
+    <input type="submit" value="Edit Genre">
+    </form>
+
+    <% end %>
+</ol>
+
 
 

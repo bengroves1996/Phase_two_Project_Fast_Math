@@ -1,4 +1,4 @@
-class CommentController < ApplicationController
+class CommentsController < ApplicationController
    #CRUD, REMEMBER CRUD!
    
     #* Get Comments List
@@ -26,7 +26,7 @@ class CommentController < ApplicationController
         if logged_in?
             comment = Comment.create(name: params[:name])
             user = current_user 
-            user.comments << "Added to user"
+            user.comments << comment
             redirect to '/comments'
         else
             erb :'sessions/login'
@@ -36,7 +36,9 @@ class CommentController < ApplicationController
     #* Get comment show page
     get '/comments/:id' do
         if logged_in?
+            
             @comment = Comment.find_by(id: params[:id])
+            #binding.pry
             if @comment == nil
                 redirect to '/comments'
             end
