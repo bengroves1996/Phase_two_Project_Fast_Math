@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
    #CRUD, REMEMBER CRUD!
    
-    #* Get Comments List
     get '/comments' do
         if logged_in?
             @comments = Comment.all 
@@ -11,7 +10,6 @@ class CommentsController < ApplicationController
         end
     end
 
-    #* Get new comment form
     get '/comments/new_comment' do
         if logged_in?
             erb :'comments/new_comment'
@@ -21,7 +19,6 @@ class CommentsController < ApplicationController
         end
     end
 
-    #* Create new comment from form
     post '/comments' do
         if logged_in?
             comment = Comment.create(name: params[:name])
@@ -33,12 +30,10 @@ class CommentsController < ApplicationController
         end 
     end
 
-    #* Get comment show page
     get '/comments/:id' do
         if logged_in?
             
             @comment = Comment.find_by(id: params[:id])
-            #binding.pry
             if @comment == nil
                 redirect to '/comments'
             end
@@ -48,7 +43,6 @@ class CommentsController < ApplicationController
         end     
     end
     
-    #* Get edit comment form
     get '/comments/:id/edit' do
         if logged_in?
             @comment = Comment.find(params[:id])
@@ -58,14 +52,12 @@ class CommentsController < ApplicationController
         end 
     end
 
-    #* Update comment
     patch '/comments/:id' do
         comment = Comment.find(params[:id])
         comment.update(params[:comment])
         redirect to "/comments"
     end
 
-    #* Delete comment
     delete '/comments/:id' do
         comment = Comment.find(params[:id])
         comment.destroy
